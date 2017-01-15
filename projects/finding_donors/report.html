@@ -13294,19 +13294,20 @@ $$ F_{\beta} = (1 + \beta^2) \cdot \frac{precision \cdot recall}{\left( \beta^2 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># TODO: Calculate accuracy</span>
 <span class="c1">#accuracy = float(n_greater_50k)/float(n_records)</span>
 
-<span class="n">true_positives</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>  <span class="c1">#sum(y_test)</span>
+<span class="n">true_positives</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">income</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>  <span class="c1">#sum(y_test)</span>
 <span class="n">true_negatives</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">false_positives</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="n">false_positives</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">income</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="n">false_negatives</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">total_records</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span> 
+<span class="n">total_records</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">income</span><span class="p">))</span> 
 
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">true_positives</span><span class="o">/</span><span class="n">total_records</span>
+
 
 <span class="c1"># TODO: Calculate F-score using the formula above for beta = 0.5</span>
 <span class="n">b_square</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">**</span><span class="mi">2</span>
@@ -13330,7 +13331,7 @@ $$ F_{\beta} = (1 + \beta^2) \cdot \frac{precision \cdot recall}{\left( \beta^2 
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Naive Predictor: [Accuracy score: 0.2438, F-score: 0.2872]
+<pre>Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </pre>
 </div>
 </div>
@@ -14942,13 +14943,13 @@ Final F-score on the testing data: 0.7453
 <tbody>
 <tr>
 <td style="text-align:center">Accuracy Score</td>
-<td style="text-align:center">0.2438</td>
+<td style="text-align:center">0.2478</td>
 <td style="text-align:center">0.8180</td>
 <td style="text-align:center">0.8681</td>
 </tr>
 <tr>
 <td style="text-align:center">F-score</td>
-<td style="text-align:center">0.2872</td>
+<td style="text-align:center">0.2917</td>
 <td style="text-align:center">0.6270</td>
 <td style="text-align:center">0.7453</td>
 </tr>
@@ -15003,28 +15004,34 @@ So i believe;</p>
 <thead><tr>
 <th style="text-align:center">Rank</th>
 <th style="text-align:center">Feature</th>
+<th style="text-align:center">Reason</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">1</td>
 <td style="text-align:center">education-num</td>
+<td style="text-align:center">I think the number of educational years completed represents how a person is willing to improve themself so i think, it is the most important feature among others</td>
 </tr>
 <tr>
 <td style="text-align:center">2</td>
 <td style="text-align:center">age</td>
+<td style="text-align:center">I consider age as experience and experienced people are getting payed more</td>
 </tr>
 <tr>
 <td style="text-align:center">3</td>
 <td style="text-align:center">capital-gain</td>
+<td style="text-align:center">I think people who earn more are more likely to investment more</td>
 </tr>
 <tr>
 <td style="text-align:center">4</td>
 <td style="text-align:center">capital-loss</td>
+<td style="text-align:center">Also, people who invest more can also lose money</td>
 </tr>
 <tr>
 <td style="text-align:center">5</td>
-<td style="text-align:center">house-per-week</td>
+<td style="text-align:center">hours-per-week</td>
+<td style="text-align:center">I chose hours-per-week as fifth feature as i did not consider categorical features and people might get payed more if they work more</td>
 </tr>
 </tbody>
 </table>
@@ -15658,7 +15665,7 @@ PWKQJ0mSJEk9YpAnSZIkST1ikCdJkiRJPWKQJ0mSJEk9YpAnSZIkST1ikCdJkiRJPfL/AdvBcV76
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Import functionality for cloning a model</span>
